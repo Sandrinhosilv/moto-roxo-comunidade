@@ -3,11 +3,50 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Star, Users, Wrench, Trophy, Clock, Shield, Zap, Target, DollarSign, BookOpen, Video, MessageCircle, Award } from "lucide-react";
+import { useEffect } from "react";
 
 const LandingPage = () => {
   const scrollToOffers = () => {
     document.getElementById('ofertas')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Pixel de rastreamento
+  useEffect(() => {
+    // Facebook Pixel
+    const fbPixel = `
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'PageView');
+    `;
+    
+    const script = document.createElement('script');
+    script.innerHTML = fbPixel;
+    document.head.appendChild(script);
+
+    // Google Analytics
+    const gtag = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'YOUR_GA_ID');
+    `;
+    
+    const gtagScript = document.createElement('script');
+    gtagScript.innerHTML = gtag;
+    document.head.appendChild(gtagScript);
+
+    return () => {
+      document.head.removeChild(script);
+      document.head.removeChild(gtagScript);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-primary-900 to-black">
@@ -42,15 +81,23 @@ const LandingPage = () => {
               </Button>
             </div>
 
-            {/* Video Placeholder */}
+            {/* VSL - Video Sales Letter */}
             <div className="mt-12 bg-gray-800/50 rounded-2xl p-6 backdrop-blur-sm border border-gray-700">
-              <div className="aspect-video bg-gradient-to-br from-primary-500/20 to-primary-700/20 rounded-xl flex items-center justify-center mb-4">
-                <div className="text-center">
-                  <Video className="w-16 h-16 text-primary-400 mx-auto mb-4" />
-                  <p className="text-white font-semibold">▶️ Veja os resultados dos nossos mecânicos</p>
-                  <p className="text-gray-400 text-sm">Transformações reais com conhecimento técnico</p>
-                </div>
+              <div className="aspect-video bg-gradient-to-br from-primary-500/20 to-primary-700/20 rounded-xl overflow-hidden">
+                <iframe
+                  src="https://fast.wistia.net/embed/iframe/YOUR_WISTIA_VIDEO_ID?videoFoam=true"
+                  title="Transformação de Mecânicos"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  className="w-full h-full rounded-xl"
+                ></iframe>
               </div>
+              <p className="text-white font-semibold mt-4 text-center">
+                ▶️ Veja os resultados dos nossos mecânicos
+              </p>
+              <p className="text-gray-400 text-sm text-center">
+                Transformações reais com conhecimento técnico
+              </p>
             </div>
           </div>
         </div>
@@ -106,23 +153,33 @@ const LandingPage = () => {
             {[
               {
                 name: "Mecânico Especialista MS03",
-                content: "O conhecimento que adquiri transformou completamente meu trabalho. Agora consigo resolver problemas que antes me deixavam perdido."
+                content: "O conhecimento que adquiri transformou completamente meu trabalho. Agora consigo resolver problemas que antes me deixavam perdido.",
+                image: "https://gestionmech.ct.ws/wp-content/uploads/2024/11/MS03-1024x1024.jpg"
               },
               {
                 name: "Mecânico Profissional MS02", 
-                content: "As tabelas e esquemas são incríveis. Economizo horas de trabalho e ganho muito mais por serviço."
+                content: "As tabelas e esquemas são incríveis. Economizo horas de trabalho e ganho muito mais por serviço.",
+                image: "https://gestionmech.ct.ws/wp-content/uploads/2024/11/MS02-1024x1024.jpg"
               },
               {
                 name: "Mecânico Certificado MS01",
-                content: "Finalmente tenho acesso ao conhecimento que sempre busquei. Minha renda aumentou significativamente."
+                content: "Finalmente tenho acesso ao conhecimento que sempre busquei. Minha renda aumentou significativamente.",
+                image: "https://gestionmech.ct.ws/wp-content/uploads/2024/11/MS01-1024x1024.jpg"
               }
             ].map((testimonial, index) => (
               <Card key={index} className="bg-gradient-to-br from-gray-800 to-gray-700 border-gray-600 hover:border-primary-500 transition-all duration-300">
                 <CardContent className="p-6">
-                  <div className="flex mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
+                  <div className="flex items-center mb-4">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name}
+                      className="w-16 h-16 rounded-full object-cover mr-4"
+                    />
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
                   </div>
                   <p className="text-gray-300 mb-4 italic">"{testimonial.content}"</p>
                   <div>
@@ -188,7 +245,10 @@ const LandingPage = () => {
                   <p className="text-gray-300 text-sm">ou 2x de R$8,50</p>
                 </div>
                 
-                <Button className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-xl">
+                <Button 
+                  onClick={() => window.open('https://pay.kiwify.com.br/YOUR_BASIC_LINK', '_blank')}
+                  className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-xl"
+                >
                   QUERO APROVEITAR
                 </Button>
               </CardContent>
@@ -232,7 +292,10 @@ const LandingPage = () => {
                   <p className="text-white text-sm">ou 5x de R$10,55</p>
                 </div>
                 
-                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-xl text-lg">
+                <Button 
+                  onClick={() => window.open('https://pay.kiwify.com.br/YOUR_PREMIUM_LINK', '_blank')}
+                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-xl text-lg"
+                >
                   QUERO APROVEITAR
                 </Button>
               </CardContent>
