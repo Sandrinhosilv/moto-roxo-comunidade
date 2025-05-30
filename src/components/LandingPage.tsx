@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -81,15 +80,16 @@ const LandingPage = () => {
               </Button>
             </div>
 
-            {/* VSL - Video Sales Letter */}
+            {/* VSL - Video Sales Letter da página original */}
             <div className="mt-12 bg-gray-800/50 rounded-2xl p-6 backdrop-blur-sm border border-gray-700">
               <div className="aspect-video bg-gradient-to-br from-primary-500/20 to-primary-700/20 rounded-xl overflow-hidden">
                 <iframe
-                  src="https://fast.wistia.net/embed/iframe/YOUR_WISTIA_VIDEO_ID?videoFoam=true"
-                  title="Transformação de Mecânicos"
+                  src="https://gestionmech.ct.ws/pv2"
+                  title="Gestion MECH - Apresentação"
                   allow="autoplay; fullscreen"
                   allowFullScreen
                   className="w-full h-full rounded-xl"
+                  style={{ border: 'none' }}
                 ></iframe>
               </div>
               <p className="text-white font-semibold mt-4 text-center">
@@ -246,7 +246,7 @@ const LandingPage = () => {
                 </div>
                 
                 <Button 
-                  onClick={() => window.open('https://pay.kiwify.com.br/YOUR_BASIC_LINK', '_blank')}
+                  onClick={() => window.open('https://pay.kiwify.com.br/Kj2kJpA', '_blank')}
                   className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-xl"
                 >
                   QUERO APROVEITAR
@@ -293,7 +293,7 @@ const LandingPage = () => {
                 </div>
                 
                 <Button 
-                  onClick={() => window.open('https://pay.kiwify.com.br/YOUR_PREMIUM_LINK', '_blank')}
+                  onClick={() => window.open('https://pay.kiwify.com.br/mBWz8I6', '_blank')}
                   className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-xl text-lg"
                 >
                   QUERO APROVEITAR
