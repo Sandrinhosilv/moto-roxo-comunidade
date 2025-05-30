@@ -21,7 +21,7 @@ const LandingPage = () => {
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('init', '2057444931414380');
       fbq('track', 'PageView');
     `;
     
@@ -34,7 +34,7 @@ const LandingPage = () => {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'YOUR_GA_ID');
+      gtag('config', 'G-Z3R0E1NFP5');
     `;
     
     const gtagScript = document.createElement('script');
@@ -246,7 +246,7 @@ const LandingPage = () => {
                 </div>
                 
                 <Button 
-                  onClick={() => window.open('https://pay.kiwify.com.br/Kj2kJpA', '_blank')}
+                  onClick={() => window.open('https://lastlink.com/p/C23DE2785/checkout-payment/', '_blank')}
                   className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3 rounded-xl"
                 >
                   QUERO APROVEITAR
@@ -293,7 +293,7 @@ const LandingPage = () => {
                 </div>
                 
                 <Button 
-                  onClick={() => window.open('https://pay.kiwify.com.br/mBWz8I6', '_blank')}
+                  onClick={() => window.open('https://lastlink.com/p/CF3C03836/checkout-payment/', '_blank')}
                   className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-xl text-lg"
                 >
                   QUERO APROVEITAR
